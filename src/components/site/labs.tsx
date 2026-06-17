@@ -1,51 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useReduceMotion } from "@/lib/use-reduce-motion";
 import { Stagger, Reveal, fadeUp, EASE } from "@/components/motion/primitives";
+import { OrbitalPipeline } from "@/components/orbital-pipeline";
 import { labs, guides } from "@/lib/content";
-
-function Flywheel() {
-  const reduce = useReduceMotion();
-  const steps = ["Concept", "Image", "Video", "Measure"];
-  return (
-    <div className="relative mx-auto aspect-square w-full max-w-[260px]">
-      <motion.div
-        className="absolute inset-0"
-        animate={reduce ? undefined : { rotate: 360 }}
-        transition={{ duration: 40, ease: "linear", repeat: Infinity }}
-      >
-        {/* orbit ring */}
-        <div className="absolute inset-3 rounded-full border border-dashed border-lime/30" />
-        {steps.map((s, i) => {
-          const angle = (i / steps.length) * Math.PI * 2 - Math.PI / 2;
-          const x = 50 + Math.cos(angle) * 44;
-          const y = 50 + Math.sin(angle) * 44;
-          return (
-            <motion.div
-              key={s}
-              className="absolute -translate-x-1/2 -translate-y-1/2"
-              style={{ left: `${x}%`, top: `${y}%` }}
-              animate={reduce ? undefined : { rotate: -360 }}
-              transition={{ duration: 40, ease: "linear", repeat: Infinity }}
-            >
-              <span className="whitespace-nowrap rounded-full border border-cream/15 bg-forest-950/80 px-2.5 py-1 font-mono text-[0.62rem] uppercase tracking-wider text-mint backdrop-blur">
-                {s}
-              </span>
-            </motion.div>
-          );
-        })}
-      </motion.div>
-      {/* hub */}
-      <div className="absolute left-1/2 top-1/2 flex h-20 w-20 -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border border-lime/40 bg-lime/10 text-center backdrop-blur">
-        <span className="font-mono text-[0.6rem] uppercase tracking-wider text-cream-dim">
-          {labs.metric.label}
-        </span>
-        <span className="text-2xl font-bold text-lime">{labs.metric.value}</span>
-      </div>
-    </div>
-  );
-}
 
 export function Labs() {
   return (
@@ -124,7 +82,9 @@ export function Labs() {
                   </svg>
                 </a>
               </div>
-              <Flywheel />
+              <div className="py-4">
+                <OrbitalPipeline />
+              </div>
             </div>
           </motion.article>
 

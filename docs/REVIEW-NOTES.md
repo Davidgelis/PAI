@@ -64,4 +64,26 @@ inherited things are the brand palette and the Space Grotesk typeface.
   fallbacks, AA-contrast cream-on-forest text.
 - No em dashes in site copy or these notes.
 
+## Revision pass (feedback round)
+
+- **Typography:** the brand spec is Space Grotesk only; an earlier draft used
+  JetBrains Mono for micro-labels, dates, and the tool stack line. Removed the
+  mono face entirely and routed the technical label style (uppercase plus
+  tracking) through Space Grotesk so nothing off-brand renders.
+- **Testimonials:** rebuilt from a rotating single-quote design (oversized
+  parallax index, vertical label, lime progress line, word-reveal quote,
+  prev/next nav, faint bottom ticker) re-skinned to forest and lime. Replaces
+  the previous dual-marquee.
+- **Labs flywheel:** replaced with an orbital pipeline adapted from a radial
+  orbital timeline. Auto-rotating stages around a live center hub; hover or
+  focus a stage to pause, light it lime, thread a line to the hub, and surface
+  that stage in the center. Recolored off the original purple/blue/black to
+  forest and lime.
+- **News feed:** rebuilt as a stacked card deck adapted from stacked article
+  cards. Cards peek when collapsed and fan out on click, with monogram tiles
+  instead of stock photography to hold the aesthetic. Card height tuned so long
+  titles wrap rather than truncate.
+- Re-verified: `npm run build` and `npm run lint` clean, 0 console errors at
+  both widths, 0 hydration errors under reduced motion.
+
 Screenshots of the final result are in `docs/screenshots/`.

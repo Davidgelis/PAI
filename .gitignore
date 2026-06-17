@@ -44,3 +44,5 @@ next-env.d.ts
 /shots/
 /scripts/footshot.mjs
 /scripts/reduced.mjs
+/scripts/hovercheck.mjs
+/scripts/interact.mjs
