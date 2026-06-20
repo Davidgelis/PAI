@@ -1,112 +1,112 @@
 @import "tailwindcss";
 
 /* ----------------------------------------------------------------------------
-   Practicaly AI — "Signal in the Forest"
-   Brand palette + Space Grotesk. Design system tokens.
+   Practicaly AI — v2 "Daylight Broadcast"
+   Light honeydew canvas, deep forest ink, color used as STRUCTURE not glow.
+   Brand palette + Space Grotesk are the only inherited things from the source.
 ---------------------------------------------------------------------------- */
 
 @theme {
-  /* Forest canvas + panels */
-  --color-forest-950: #08201a;
-  --color-forest-900: #0b241e;
-  --color-forest-850: #0e2a23;
-  --color-forest-800: #12352b;
-  --color-forest-700: #184438;
-  --color-slate-deep: #16302f;
+  /* Canvas + paper */
+  --color-canvas: #eaf8ec;
+  --color-paper: #f3fbf4;
+  --color-paper-edge: #dcefdf;
 
-  /* Accents */
+  /* Forest panels / ink */
+  --color-forest-950: #081a16;
+  --color-forest-900: #0c211c;
+  --color-forest-800: #133029;
+  --color-forest-700: #193133;
+  --color-ink: #14302a;
+  --color-ink-soft: #355247;
+  --color-ink-dim: #5d756b;
+
+  /* Accents (structure + focal) */
   --color-lime: #c8f250;
-  --color-lime-soft: #d8f87e;
+  --color-lime-deep: #9ad017;
   --color-mint: #27eaa6;
   --color-periwinkle: #a5a2fb;
 
-  /* Ink */
+  /* Text on dark panels */
   --color-cream: #eaf3ec;
-  --color-cream-dim: #b9cdc2;
-  --color-moss: #7e988c;
+  --color-cream-dim: #aec6bb;
 
-  /* Brand spec: Space Grotesk is the only typeface. The "mono" token is kept
-     for the technical label style (uppercase + tracking) but resolves to the
-     same family so nothing off-brand renders. */
+  /* Brand spec: Space Grotesk is the only typeface. Keep a "mono" token for the
+     technical label style (uppercase + tracking) resolving to the same family. */
   --font-display: var(--font-display), "Space Grotesk", sans-serif;
   --font-mono: var(--font-display), "Space Grotesk", sans-serif;
 
-  --color-background: var(--color-forest-900);
-  --color-foreground: var(--color-cream);
+  --color-background: var(--color-canvas);
+  --color-foreground: var(--color-ink);
 }
 
 @layer base {
-  * {
-    border-color: color-mix(in oklab, var(--color-cream) 12%, transparent);
-  }
-
   html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    background: var(--color-forest-900);
-    color: var(--color-cream);
+    background: var(--color-canvas);
+    color: var(--color-ink);
     font-family: var(--font-display);
     overflow-x: hidden;
   }
 
   ::selection {
-    background: var(--color-lime);
-    color: var(--color-forest-950);
+    background: var(--color-ink);
+    color: var(--color-lime);
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-lime);
+    outline: 2px solid var(--color-ink);
     outline-offset: 3px;
-    border-radius: 4px;
+    border-radius: 3px;
   }
 }
 
 @layer utilities {
-  /* Eyebrow / technical micro-label */
-  .label-mono {
+  /* Technical micro-label (eyebrow, stamp, data) */
+  .label {
     font-family: var(--font-mono);
     text-transform: uppercase;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.24em;
     font-size: 0.6875rem;
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .text-balance {
     text-wrap: balance;
   }
-
-  /* Fine grain + film texture overlay helper */
-  .grain {
-    position: relative;
-  }
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.04;
-    mix-blend-mode: overlay;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  .text-pretty {
+    text-wrap: pretty;
   }
 }
 
-/* Hairline grid backdrop */
-.grid-lines {
+/* Footer ticker: a duplicated row translated by half its width. Frozen under
+   reduced motion by the media query below. */
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-ticker {
+  animation: ticker 32s linear infinite;
+}
+
+/* Hairline measure grid (used sparingly on panels) */
+.rule-grid {
   background-image:
     linear-gradient(
       to right,
-      color-mix(in oklab, var(--color-cream) 5%, transparent) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      color-mix(in oklab, var(--color-cream) 5%, transparent) 1px,
+      color-mix(in oklab, var(--color-ink) 7%, transparent) 1px,
       transparent 1px
     );
-  background-size: 72px 72px;
+  background-size: 12.5% 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {

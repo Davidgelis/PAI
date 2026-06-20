@@ -1,16 +1,16 @@
-import { Navbar } from "@/components/site/navbar";
-import { Hero } from "@/components/site/hero";
-import { News } from "@/components/site/news";
-import { Labs } from "@/components/site/labs";
-import { Testimonials } from "@/components/site/testimonials";
-import { Footer } from "@/components/site/footer";
+import { Hero } from "@/components/v2/hero";
+import { LogoWall } from "@/components/v2/logo-wall";
+import { News } from "@/components/v2/news";
+import { Labs } from "@/components/v2/labs";
+import { Testimonials } from "@/components/v2/testimonials";
+import { Footer } from "@/components/v2/footer";
 
 export default function Home() {
   return (
     <>
-      <Navbar />
       <main>
         <Hero />
+        <LogoWall />
         <News />
         <Labs />
         <Testimonials />
