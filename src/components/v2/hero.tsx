@@ -36,6 +36,12 @@ const LINES: Word[][] = [
   ],
 ];
 
+// running word index per line, for entrance stagger (no render-time mutation)
+const LINE_OFFSETS = LINES.reduce<number[]>((acc, _line, i) => {
+  acc.push(i === 0 ? 0 : acc[i - 1] + LINES[i - 1].length);
+  return acc;
+}, []);
+
 function KineticWord({
   word,
   index,
@@ -167,8 +173,6 @@ export function Hero() {
     py.set(0);
   }
 
-  let wi = -1;
-
   return (
     <section
       ref={ref}
@@ -220,16 +224,16 @@ export function Hero() {
           <h1 className="mt-5 font-bold leading-[0.92] tracking-[-0.03em] text-ink">
             {LINES.map((line, li) => (
               <span key={li} className="flex flex-wrap items-end gap-x-[0.28em]">
-                {line.map((w) => {
-                  wi += 1;
+                {line.map((w, wIdx) => {
+                  const order = LINE_OFFSETS[li] + wIdx;
                   return (
                     <span
-                      key={wi}
+                      key={order}
                       className="text-[clamp(2.75rem,9vw,7.5rem)]"
                     >
                       <KineticWord
                         word={w}
-                        index={wi}
+                        index={order}
                         px={spx}
                         py={spy}
                         reduce={reduce}
