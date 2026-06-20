@@ -3,15 +3,19 @@ import { LogoWall } from "@/components/v2/logo-wall";
 import { News } from "@/components/v2/news";
 import { Labs } from "@/components/v2/labs";
 import { Testimonials } from "@/components/v2/testimonials";
+import { Footer } from "@/components/v2/footer";
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <LogoWall />
-      <News />
-      <Labs />
-      <Testimonials />
-    </main>
+    <>
+      <main>
+        <Hero />
+        <LogoWall />
+        <News />
+        <Labs />
+        <Testimonials />
+      </main>
+      <Footer />
+    </>
   );
 }

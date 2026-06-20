@@ -84,6 +84,20 @@
   }
 }
 
+/* Footer ticker: a duplicated row translated by half its width. Frozen under
+   reduced motion by the media query below. */
+@keyframes ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-ticker {
+  animation: ticker 32s linear infinite;
+}
+
 /* Hairline measure grid (used sparingly on panels) */
 .rule-grid {
   background-image:
